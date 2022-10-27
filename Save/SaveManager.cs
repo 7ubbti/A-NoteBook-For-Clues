@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Fungus;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-
+/// <summary>
+/// 储存控制
+/// </summary>
 namespace SweetCandy.MisTrust
 {
     public class SaveManager
@@ -30,7 +31,6 @@ namespace SweetCandy.MisTrust
         }
         public void SaveGame()
         {
-            Fungus.SaveMenu.instance.Save();
             Save save = CreateSave();
             BinaryFormatter bf = new BinaryFormatter();
             FileStream fs = File.Create(Application.persistentDataPath + "/ClueDatas.sweetcandy");
@@ -46,7 +46,6 @@ namespace SweetCandy.MisTrust
                 Save save = bf.Deserialize(fs) as Save;
                 fs.Close();
                 Clue.OwnedClues = save._OwnedClues;
-                Fungus.SaveMenu.instance.Load();
             }
             else
             {

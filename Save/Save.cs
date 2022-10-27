@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+/// <summary>
+/// 储存部分
+/// </summary>
 namespace SweetCandy.MisTrust
 {
 

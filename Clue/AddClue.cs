@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// 点击3种类型按钮后进行添加Clue的处理
+/// </summary>
 namespace SweetCandy.MisTrust
 {
     public class AddClue : MonoBehaviour
     {
-        public Text text;
-        [SerializeField]
-        public Clue.Type t;
+        [SerializeField] protected Clue.Type t;
 
-        public GameObject MessageReceiver;
-        public GameObject clueController;
-        public GameObject HomeReceiver;
+        public GameObject MessageReceiver; //用来添加当页的标签的对象
+        public GameObject clueController; //用来处理Clue传递的对象
+        public GameObject HomeReceiver; //用来添加主页的标签的对象
         public void Click()
         {
-            if (!Clue.OwnedClues.Exists(clues => clues.Key == Clue.showingClue.Key))
+            if (!Clue.OwnedClues.Exists(clues => clues.Key == Clue.showingClue.Key)) //新线索
             {
                 Clue.OwnedClues.Add(new Clue.clue { Key = Clue.showingClue.Key, text = Clue.showingClue.text, Type = t });
                 Clue.ClueArray.Remove(Clue.showingClue.Key);
@@ -26,7 +26,7 @@ namespace SweetCandy.MisTrust
                 clueController.SendMessage("displayaddClue");
 
             }
-            else
+            else //旧线索
             {
                 GameObject[] label = GameObject.FindGameObjectsWithTag("label");
                 foreach (var obj in label)

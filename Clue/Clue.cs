@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+/// <summary>
+/// 线索的核心类
+/// </summary>
 namespace SweetCandy.MisTrust
 {
     public static class Clue
@@ -13,17 +15,17 @@ namespace SweetCandy.MisTrust
             public int Key;
             public string text;
             public Clue.Type Type;
-        };
+        }; //线索结构类
 
-        public enum Type { deny, trust, suspect };
+        public enum Type { deny, trust, suspect }; //线索类型
 
-        public static Dictionary<int, string> ClueArray = new Dictionary<int, string>();
+        public static Dictionary<int, string> ClueArray = new Dictionary<int, string>(); //存储玩家此时得到的线索的字典(处理为队列)
 
-        public static List<clue> OwnedClues = new List<clue>();
-        public static clue showingClue = new clue();
+        public static List<clue> OwnedClues = new List<clue>(); //存储玩家已经得到并标记的线索
+        public static clue showingClue = new clue(); //存储右侧此时展示的线索，负责传递线索内容
 
 
-        public static Dictionary<int, string> TotalClueArray = new Dictionary<int, string>
+        public static Dictionary<int, string> TotalClueArray = new Dictionary<int, string> //线索库 --MisTrust中的实例
         {
             {0,"刚刚发生了一起车祸，你应该是坐在主驾驶位。现在你全身上下只有头部绑着绷带"},
             {1,"你们主驾的安全气囊失灵了"},

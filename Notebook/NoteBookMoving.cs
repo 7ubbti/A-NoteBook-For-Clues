@@ -5,7 +5,9 @@ using DG.Tweening;
 using System.Net;
 using UnityEngine.UI;
 using UnityEngine.Audio;
-
+/// <summary>
+/// 此类为控制书本页面打开部分 不重要
+/// </summary>
 namespace SweetCandy.MisTrust
 {
     public class NoteBookMoving : MonoBehaviour
@@ -71,11 +73,6 @@ namespace SweetCandy.MisTrust
         public void generateRedDot()
         {
             RedDot.GetComponent<UI_FadeInFadeOut>().UI_FadeIn_Event();
-        }
-        public void ShowSelf()
-        {
-
-
         }
     }
 }

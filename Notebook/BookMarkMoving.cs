@@ -1,9 +1,10 @@
 using DG.Tweening;
-//using Fungus.EditorUtils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// 切换书本页面用以整理线索 
+/// </summary>
 namespace SweetCandy.MisTrust
 {
     public class BookMarkMoving : MonoBehaviour

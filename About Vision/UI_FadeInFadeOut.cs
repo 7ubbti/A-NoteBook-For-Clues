@@ -1,50 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 /// <summary>
-/// UI的渐入渐出
+/// 控制UI的渐入渐出 需要CanvasGroup组件
 /// </summary>
-public class UI_FadeInFadeOut : MonoBehaviour
+namespace SweetCandy.MisTrust
 {
-    public float UI_Alpha = 1;             //初始化
-    public float alphaSpeed = 2f;          //渐隐渐显的速度
-    private CanvasGroup canvasGroup;
-
-    // Use this for initialization
-    void Start()
+    public class UI_FadeInFadeOut : MonoBehaviour
     {
-        canvasGroup = this.GetComponent<CanvasGroup>();
-    }
+        public float UI_Alpha = 1;             //初始化
+        public float alphaSpeed = 2f;          //渐隐渐显的速度
+        private CanvasGroup canvasGroup;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (canvasGroup == null)
+        // Use this for initialization
+        void Start()
         {
-            return;
+            canvasGroup = this.GetComponent<CanvasGroup>();
         }
 
-        if (UI_Alpha != canvasGroup.alpha)
+        // Update is called once per frame
+        void Update()
         {
-            canvasGroup.alpha = Mathf.Lerp(canvasGroup.alpha, UI_Alpha, alphaSpeed * Time.deltaTime);
-            if (Mathf.Abs(UI_Alpha - canvasGroup.alpha) <= 0.01f)
+            if (canvasGroup == null)
             {
-                canvasGroup.alpha = UI_Alpha;
+                return;
+            }
+
+            if (UI_Alpha != canvasGroup.alpha)
+            {
+                canvasGroup.alpha = Mathf.Lerp(canvasGroup.alpha, UI_Alpha, alphaSpeed * Time.deltaTime);
+                if (Mathf.Abs(UI_Alpha - canvasGroup.alpha) <= 0.01f)
+                {
+                    canvasGroup.alpha = UI_Alpha;
+                }
             }
         }
+
+        public void UI_FadeIn_Event() //显示时调用此事件
+        {
+            UI_Alpha = 1;
+            canvasGroup.blocksRaycasts = true;      //可以和该对象交互
+        }
+
+        public void UI_FadeOut_Event() //消失时调用此事件
+        {
+            UI_Alpha = 0;
+            canvasGroup.blocksRaycasts = false;     //不可以和该对象交互
+        }
+
+
     }
-
-    public void UI_FadeIn_Event() //显示时调用此事件
-    {
-        UI_Alpha = 1;
-        canvasGroup.blocksRaycasts = true;      //可以和该对象交互
-    }
-
-    public void UI_FadeOut_Event() //消失时调用此事件
-    {
-        UI_Alpha = 0;
-        canvasGroup.blocksRaycasts = false;     //不可以和该对象交互
-    }
-
-
 }
